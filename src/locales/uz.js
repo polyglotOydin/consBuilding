@@ -1,5 +1,5 @@
-{
-    "navbar": {
+const transUz = {
+   
       "home": "Bosh sahifa",
       "about": "Biz haqimizda",
       "projects": "Loyihalar",
@@ -7,28 +7,21 @@
       "lang": "Til",
       "uzbek": "O'zbekcha",
       "russian": "Ruscha",
-      "english": "Inglizcha"
-    },
-    "footer": {
-      "home": "Bosh sahifa",
-      "about": "Biz haqimizda",
-      "projects": "Loyihalar",
-      "contact": "Aloqa",
-      "social_media": {
+      "english": "Inglizcha",
+    
         "facebook": "Facebook",
         "twitter": "Twitter",
-        "instagram": "Instagram"
-      },
-      "copyright": "© 2024 - Barcha huquqlar himoyalangan ACME Industries Ltd"
-    },
+        "instagram": "Instagram",
+     
+      "copyright": "© 2024 - Barcha huquqlar himoyalangan ACME Industries Ltd",
+   
     
-    "about": {
-        "title": "Biz haqimizda",
+    
+        "titleAbout": "Biz haqimizda",
         "description": "Biz sizning qulaylik va xavfsizligizni qadrlaymiz. Bizning binolarimiz sizning xayolingizni amalga oshirishga yordam beradigan yuqori sifatli.",
-        "read_more": "Ko'proq o'qing"
-      },
-      "contact": {
-        "title": "Aloqa",
+        "read_more": "Ko'proq o'qing",
+      
+        "titleContact": "Aloqa",
         "subtitle": "Ma'lumotlaringizni qoldiring",
         "first_name": "Ism",
         "last_name": "Familiya",
@@ -37,10 +30,9 @@
         "message": "Xabar",
         "agree_label": "Buni tanlaganingiz bilan, siz bizning",
         "privacy_policy": "maxfiylik siyosatiga rozilik bildirasiz",
-        "send_button": "Yuborish"
-      },
-      "information": {
-        "title": "Bizning ishlarimiz"
-      }
+        "send_button": "Yuborish",
+     
+        "titleWork": "Bizning ishlarimiz"
+     
   }
-  
+  export default transUz

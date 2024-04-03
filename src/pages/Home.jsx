@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../components/Navbar';
 import cons9 from '../assets/realPc/real_cons.avif';
 import cons10 from '../assets/realPc/real_cons2.avif';
 import cons11 from '../assets/realPc/real_cons3.avif';
@@ -22,7 +21,6 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-background-pattern">
-      <Navbar />
       <div className="relative h-screen">
         <div className="absolute inset-0">
           <img

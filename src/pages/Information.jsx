@@ -18,8 +18,8 @@ function Information() {
         });
         if (response.ok) {
           const data = await response.json();
-          setImages(data.results);
-          // Initialize AOS after images are loaded
+          setImages(data.results.slice(0, 9)); 
+         
           AOS.init();
         } else {
           console.error('Failed to fetch data');
@@ -33,11 +33,11 @@ function Information() {
   }, []);
 
   return (
-    <div className="bg-gray-100">
+    <div className="bg-black-400">
       <Navbar />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
-          <h2 className="text-2xl text-center font-bold text-gray-900">Our works</h2>
+          <h2 className="text-3xl text-center font-bold text-white">OUR WORKS</h2>
           <div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-4">
             {images.map((image, index) => (
               <div key={index} className="group relative" data-aos="fade-right">
@@ -48,8 +48,8 @@ function Information() {
                     className="h-full w-full object-cover object-center"
                   />
                 </div>
-                <h3 className="mt-2 text-sm text-gray-500">{image.user.name}</h3>
-                <p className="text-base font-semibold text-gray-900">{image.description}</p>
+                <h3 className="mt-2 text-sm text-white">{image.user.name.split(' ').slice(0, 2).join(' ')}</h3>
+                <p className="text-base font-semibold text-white">{image.description ? image.description.split(' ').slice(0, 2).join(' ') : ''}</p>
               </div>
             ))}
           </div>

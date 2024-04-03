@@ -1,29 +1,25 @@
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { SunIcon, MoonIcon } from '@heroicons/react/24/solid'; // Import icons for dark mode toggle
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Language from '../components/Language/Language';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-function Navbar() {
+function Navbar({ changeLang }) {
+  const [currentPage, setCurrentPage] = useState('Home');
   const { t, i18n } = useTranslation();
-  const [isDarkMode, setIsDarkMode] = useState(false); 
 
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
+  const changeLangHandler = (event) => {
+    console.log("Language changed to:", event.target.value);
+    const value = event.target.value;
+    changeLang(value);
   };
 
-
-  const navigation = [
-    { name: t('Home'), href: '../pages/Home.jsx', current: true },
-    { name: t('About'), href: '../pages/About.jsx', current: false },
-    { name: t('Projects'), href: '../pages/Information.jsx', current: false },
-    { name: t('contact'), href: '../pages/Contact.jsx', current: false },
-  ];
+  const handleNavigation = (pageName) => {
+    setCurrentPage(pageName);
+  };
 
   return (
     <Disclosure as="nav" className="absolute inset-x-0 top-0 z-50 bg-transparent">
@@ -49,33 +45,48 @@ function Navbar() {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current ? ' text-white' : 'text-white ',
-                          'rounded-lg px-3 py-2 text-sm font-medium'
-                        )}
-                        aria-current={item.current ? 'page' : undefined}
-                      >
-                        {item.name}
-                      </a>
-                    ))}
+                    <button
+                      onClick={() => handleNavigation('Home')}
+                      className={classNames(
+                        currentPage === 'Home' ? 'text-white' : 'text-gray-400',
+                        'rounded-lg px-3 py-2 text-sm font-medium'
+                      )}
+                    >
+                      {t('Home')}
+                    </button>
+                    <button
+                      onClick={() => handleNavigation('About')}
+                      className={classNames(
+                        currentPage === 'About' ? 'text-white' : 'text-gray-400',
+                        'rounded-lg px-3 py-2 text-sm font-medium'
+                      )}
+                    >
+                      {t('About')}
+                    </button>
+                    <button
+                      onClick={() => handleNavigation('Projects')}
+                      className={classNames(
+                        currentPage === 'Projects' ? 'text-white' : 'text-gray-400',
+                        'rounded-lg px-3 py-2 text-sm font-medium'
+                      )}
+                    >
+                      {t('Projects')}
+                    </button>
+                    <button
+                      onClick={() => handleNavigation('Contact')}
+                      className={classNames(
+                        currentPage === 'Contact' ? 'text-white' : 'text-gray-400',
+                        'rounded-lg px-3 py-2 text-sm font-medium'
+                      )}
+                    >
+                      {t('Contact')}
+                    </button>
                   </div>
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                {/* Dark mode toggle */}
-                <button
-                  onClick={toggleDarkMode}
-                  className="text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                >
-                  {isDarkMode ? <MoonIcon className="h-6 w-6" /> : <SunIcon className="h-6 w-6" />}
-                </button>
                 {/* Profile dropdown */}
-                <select className="select select-info w-full max-w-xs mx-4">
-                  <option disabled selected>Select language</option>
+                <select onChange={changeLangHandler} className="select select-info w-full max-w-xs mx-4">
                   <option>English</option>
                   <option>Russian</option>
                   <option>Uzbek</option>
@@ -83,25 +94,6 @@ function Navbar() {
               </div>
             </div>
           </div>
-
-          <Disclosure.Panel className="sm:hidden">
-            <div className="space-y-1 px-2 pb-3 pt-2">
-              {navigation.map((item) => (
-                <Disclosure.Button
-                  key={item.name}
-                  as="a"
-                  href={item.href}
-                  className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'block rounded-md px-3 py-2 text-base font-medium'
-                  )}
-                  aria-current={item.current ? 'page' : undefined}
-                >
-                  {item.name}
-                </Disclosure.Button>
-              ))}
-            </div>
-          </Disclosure.Panel>
         </>
       )}
     </Disclosure>
@@ -109,4 +101,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
